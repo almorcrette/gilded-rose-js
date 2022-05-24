@@ -72,6 +72,18 @@ I then analyse the behaviour of each of the current categories of items. I analy
 - `quality` score doesn't change day-by-day
 
 
+### Write passing tests
+
+I now write a suite of tests to reflect the behaviour of the categories of items above. I structure the test suite as follows:
+- I describe Gilded Rose
+    - within which I describe Shop class
+        - within which I describe .updateQuality method
+            - within which I describe with of the categories of items in turn
+                - testing for each of the behaviours set out in my analysis above.
+
+### Refactor
+
+
 
 
 ## Code structure
