@@ -89,7 +89,26 @@ class Shop {
     };
     agedBrie.sellIn -= 1;
   };
-  
+
+  updateBackstagePasses (backstagePass) {
+    if (backstagePass.sellIn === 0) {
+      backstagePass.quality = 0;
+    } else if (backstagePass.sellIn > 10 && backstagePass.quality <= 49) {
+      backstagePass.quality += 1;
+    } else if (backstagePass.sellIn > 5 && backstagePass.quality <= 48) {
+      backstagePass.quality += 2;
+    } else if (backstagePass.sellIn > 5 && backstagePass.quality <= 49) {
+      backstagePass.quality += 1;
+    } else if (backstagePass.sellIn > 0 && backstagePass.quality <= 47) {
+      backstagePass.quality += 3;
+    } else if (backstagePass.sellIn > 0 && backstagePass.quality <= 48) {
+      backstagePass.quality += 2;
+    } else if (backstagePass.sellIn > 0 && backstagePass.quality <= 49) {
+      backstagePass.quality += 1;
+    };
+    backstagePass.sellIn -= 1;
+  }
+
 }
 
 module.exports = {
