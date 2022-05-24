@@ -88,6 +88,9 @@ I now write a suite of tests to reflect the behaviour of the categories of items
 
 ### Refactor
 
+#### newUpdateQuality holder
+
+#### Category submethods
 
 
 
