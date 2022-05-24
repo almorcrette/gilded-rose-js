@@ -61,7 +61,7 @@ I then analyse the behaviour of each of the current categories of items. I analy
 - Starts with a `sellIn` number of days: e.g. `10`
 - Every day, `sellIn` days goes down by `1` and `quality` score goes **up** by `1`, except...
 - When within 10 days of sell-by date (i.e. when their `sellIn` days are less than `11`), `quality` goes **up** by `2`, except...
-- When within 10 days of sell-by date (i.e. when their `sellIn` days are less than `11`), `quality` goes **up** by `3`, except...
+- When within 5 days of sell-by date (i.e. when their `sellIn` days are less than `6`), `quality` goes **up** by `3`, except...
 - When past their sell-by dates (i.e. when their `sellIn` days are negative), `quality` goes to `0`
 - max `quality` of `50`
 
@@ -69,8 +69,7 @@ I then analyse the behaviour of each of the current categories of items. I analy
 - Starts with a `quality` score: e.g. `20`
 - Starts with a `sellIn` number of days: e.g. `10`
 - `sellIn` days doesn't change day-by-day
-- `quality` score goes **up** by `1` day-by-day
-- max `quality` of `50`
+- `quality` score doesn't change day-by-day
 
 
 
