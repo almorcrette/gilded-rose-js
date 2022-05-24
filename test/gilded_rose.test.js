@@ -19,11 +19,18 @@ describe("Gilded Rose", () => {
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(19);
         });
-        it("reduces quality by 2 when sellIn is 0 or less (if quality not at 0)", () => {
+        it("reduces quality by 2 when sellIn is 0 or less (if quality is at least 2)", () => {
           const gildedRose = new Shop([new Item("standardItem", 0, 20)]);
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(18);
         });
+        it("reduces quality by 1 when sellIn is 0 or less and quality is at 1", () => {
+          const gildedRose = new Shop([new Item("standardItem", 0, 1)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+        })
+
+
       });
 
       describe("Aged Brie", () => {
