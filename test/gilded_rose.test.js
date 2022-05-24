@@ -86,8 +86,8 @@ describe("Gilded Rose", () => {
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(23);
         });
-        it("quality falls to 0 when sellIn is negative)", () => {
-          const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", -1, 20)]);
+        it("quality falls to 0 when sellIn is zero", () => {
+          const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)]);
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(0);
         });
