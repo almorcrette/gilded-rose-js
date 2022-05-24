@@ -44,10 +44,10 @@ I then analyse the behaviour of each of the current categories of items. I analy
 - Starts with a `quality` score: e.g. `20`
 - Starts with a `sellIn` number of days: e.g. `10`
 - Every day, `sellIn` days goes down by `1` and `quality` score goes down by `1`, except
-- When past their sell-by dates (i.e. when their `sellIn` days are negative), `quality` scroe goes down by `2`
+- When past their sell-by dates (i.e. when their `sellIn` days are negative), `quality` score goes down by `2`
 - min `quality` of `0`
 
-#### Brie
+#### Aged Brie
 
 - Starts with a `quality` score: e.g. `20`
 - Starts with a `sellIn` number of days: e.g. `10`
