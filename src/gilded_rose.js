@@ -67,6 +67,17 @@ class Shop {
 
     return this.items;
   }
+
+  updateStandardItem (standardItem) {
+    if (standardItem.sellIn > 0 && standardItem.quality >= 1) {
+      standardItem.quality -= 1;
+    } else if (standardItem.sellIn <= 0 && standardItem.quality >= 2) {
+      standardItem.quality -= 2;
+    } else if (standardItemItem.quality >= 1) {
+      standardItem.quality -= 1;
+    }
+    standardItem.sellIn -= 1;
+  }
 }
 
 module.exports = {
