@@ -68,6 +68,18 @@ class Shop {
     return this.items;
   }
 
+  newUpdateQuality() {
+    this.items.forEach( item => {
+      if (item.name === "Aged Brie") {
+        this.updateAgedBrie(item)
+      } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+        this.updateBackPass(item)
+      }
+    })
+    return this.items;
+  }
+
+
   updateStandardItem (standardItem) {
     if (standardItem.sellIn > 0 && standardItem.quality >= 1) {
       standardItem.quality -= 1;
