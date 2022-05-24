@@ -75,9 +75,9 @@ class Shop {
       standardItem.quality -= 2;
     } else if (standardItemItem.quality === 1) {
       standardItem.quality -= 1;
-    }
+    };
     standardItem.sellIn -= 1;
-  }
+  };
 
   updateAgedBrie (agedBrie) {
     if (agedBrie.sellIn > 0 && agedBrie.quality <= 49) {
@@ -86,11 +86,10 @@ class Shop {
       agedBrie.quality += 2;
     } else if (agedBrie.quality === 49) {
       agedBrie.quality += 1;
-    }
+    };
     agedBrie.sellIn -= 1;
-
-    }
-  }
+  };
+  
 }
 
 module.exports = {
