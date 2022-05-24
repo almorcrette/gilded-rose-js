@@ -6,6 +6,8 @@ This kata was originally created by Terry Hughes (http://twitter.com/TerryHughes
 
 ## Client requirements
 
+### Instruction from the kata
+
 "Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a prominent city run by a friendly innkeeper named Allison. We also buy and sell only the finest goods. Unfortunately, our goods are constantly degrading in quality as they approach their sell by date. We have a system in place that updates our inventory for us. It was developed by a no-nonsense type named Leeroy, who has moved on to new adventures. Your task is to add the new feature to our system so that we can begin selling a new category of items. First an introduction to our system:
 
 All items have a SellIn value which denotes the number of days we have to sell the item. All items have a Quality value which denotes how valuable the item is. At the end of each day our system lowers both values for every item. Pretty simple, right? Well this is where it gets interesting:
@@ -26,6 +28,52 @@ Feel free to make any changes to the UpdateQuality method and add any new code a
 ## Test coverage
 
 ## Solution design approach
+
+### Current domain model
+
+I start with a quick domain model diagram of the current state of the production code, as follows:
+
+![](assets/gilded-rose-baseline.excalidraw.png)
+
+### Analysis of each item
+
+I then analyse the behaviour of each of the current categories of items. I analys the production code and add comments to it, and I sense-check against the client description above. I use this to generate behavioural profiles for each category. See below:
+
+#### Standard item
+
+- Starts with a `quality` score: e.g. `20`
+- Starts with a `sellIn` number of days: e.g. `10`
+- Every day, `sellIn` days goes down by `1` and `quality` score goes down by `1`, except
+- When past their sell-by dates (i.e. when their `sellIn` days are negative), `quality` scroe goes down by `2`
+- min `quality` of `0`
+
+#### Brie
+
+- Starts with a `quality` score: e.g. `20`
+- Starts with a `sellIn` number of days: e.g. `10`
+- Every day, `sellIn` days goes down by `1` and `quality` score goes **up** by `1`, except...
+- When past its sell-by date (i.e. when their `sellIn` days are negative), `quality` goes goes up every day by `2`
+- max `quality` of `50`
+
+#### Backstage passes
+
+- Starts with a `quality` score: e.g. `20`
+- Starts with a `sellIn` number of days: e.g. `10`
+- Every day, `sellIn` days goes down by `1` and `quality` score goes **up** by `1`, except...
+- When within 10 days of sell-by date (i.e. when their `sellIn` days are less than `11`), `quality` goes **up** by `2`, except...
+- When within 10 days of sell-by date (i.e. when their `sellIn` days are less than `11`), `quality` goes **up** by `3`, except...
+- When past their sell-by dates (i.e. when their `sellIn` days are negative), `quality` goes to `0`
+- max `quality` of `50`
+
+#### Sulfuras
+- Starts with a `quality` score: e.g. `20`
+- Starts with a `sellIn` number of days: e.g. `10`
+- `sellIn` days doesn't change day-by-day
+- `quality` score goes **up** by `1` day-by-day
+- max `quality` of `50`
+
+
+
 
 ## Code structure
 
