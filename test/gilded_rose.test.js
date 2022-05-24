@@ -14,13 +14,13 @@ describe("Gilded Rose", () => {
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(0);
         });
-        it("reduces quality by 1 when sellIn at least 0 (if quality not at 0)", () => {
-          const gildedRose = new Shop([new Item("standardItem", 10, 20)]);
+        it("reduces quality by 1 when sellIn at least 1 (if quality not at 0)", () => {
+          const gildedRose = new Shop([new Item("standardItem", 1, 20)]);
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(19);
         });
-        it("reduces quality by 2 when sellIn is negative (if quality not at 0)", () => {
-          const gildedRose = new Shop([new Item("standardItem", -1, 20)]);
+        it("reduces quality by 2 when sellIn is 0 or less (if quality not at 0)", () => {
+          const gildedRose = new Shop([new Item("standardItem", 0, 20)]);
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(18);
         });
@@ -37,13 +37,13 @@ describe("Gilded Rose", () => {
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(50);
         });
-        it("increases in quality by 1 when sellIn at least 0 (if quality not at 50)", () => {
-          const gildedRose = new Shop([new Item("Aged Brie", 10, 20)]);
+        it("increases in quality by 1 when sellIn at least 1 (if quality not at 50)", () => {
+          const gildedRose = new Shop([new Item("Aged Brie", 1, 20)]);
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(21);
         });
-        it("increases in quality by 2 when sellIn is negative (if quality not at 50)", () => {
-          const gildedRose = new Shop([new Item("Aged Brie", -1, 20)]);
+        it("increases in quality by 2 when sellIn is 0 or less (if quality not at 50)", () => {
+          const gildedRose = new Shop([new Item("Aged Brie", 0, 20)]);
           const items = gildedRose.updateQuality();
           expect(items[0].quality).toEqual(22);
         });

@@ -44,7 +44,7 @@ I then analyse the behaviour of each of the current categories of items. I analy
 - Starts with a `quality` score: e.g. `20`
 - Starts with a `sellIn` number of days: e.g. `10`
 - Every day, `sellIn` days goes down by `1` and `quality` score goes down by `1`, except
-- When past their sell-by dates (i.e. when their `sellIn` days are negative), `quality` score goes down by `2`
+- When past their sell-by dates (i.e. when their `sellIn` days is zero or less), `quality` score goes down by `2`
 - min `quality` of `0`
 
 #### Aged Brie
@@ -52,7 +52,7 @@ I then analyse the behaviour of each of the current categories of items. I analy
 - Starts with a `quality` score: e.g. `20`
 - Starts with a `sellIn` number of days: e.g. `10`
 - Every day, `sellIn` days goes down by `1` and `quality` score goes **up** by `1`, except...
-- When past its sell-by date (i.e. when their `sellIn` days are negative), `quality` goes goes up every day by `2`
+- When past its sell-by date (i.e. when their `sellIn` days is zero or less), `quality` goes goes up every day by `2`
 - max `quality` of `50`
 
 #### Backstage passes
