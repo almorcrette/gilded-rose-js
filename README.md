@@ -88,13 +88,28 @@ I now write a suite of tests to reflect the behaviour of the categories of items
 
 ### Refactor
 
-#### newUpdateQuality holder
+Now that I have tests for the behaviour of the shop and its current categories of items, I have the safety net to refactor the current production code.
+
+#### `.newUpdateQuality` holder
+
+I reproduce all test suite for a new method call `.newUpdateQuality` which will hold my refactored production code. As the tests are reproduced and test the same behaviour as for `.updateQuality`, I know that if I can get the `.newUpdateQuality` tests paasing, I am maintaining the same behaviour in the refactored code.
 
 #### Category submethods
 
+My refactoring approach is to pull out  the quality-updating behaviour of each category of itme into its own submethod, and to combine these via conditions in `.newUpdateQuality`. I therefore implement methods for:
+- `.updateAgedBrie`
+- `.updatedBackstagePass`
+- `.updatedStandardItem`
+
+Note that a method for Sulfuras is not necessary as its quality update behaviour is not to change at all.
+
 ### Substitute new method
 
+Once I have all the tests passing for `.newUpdateQuality` using the submethods, I am confident to delete `.updateQuality` and rename `.newUpdateQuality`, and to remove the superfluous `.newUpdateQuality` tests.
+
 ### Analysis of Conjured Items
+
+At this point I turn to the new category of items - conjured items - which I analyse as follows:
 
 - Starts with a `quality` score: e.g. `20`
 - Starts with a `sellIn` number of days: e.g. `10`
@@ -105,6 +120,14 @@ I now write a suite of tests to reflect the behaviour of the categories of items
 - When past their sell-by dates (i.e. when their `sellIn` days is zero or less) and `quality` is less than `4`, then `quality` goes down as much as is possible without going beyong the minimum
 
 ### Test drive Conjured Items
+
+I test drive implementation of the new conjured item.
+
+### Further refactoring
+
+I have now delivered the functionality set out in the challenge.
+
+Nevertheless there are further opportunities to refactor:
 
 
 ## Code structure
