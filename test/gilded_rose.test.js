@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const {Shop, Item} = require("../src/gilded_rose");
 
 describe("Gilded Rose", () => {
