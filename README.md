@@ -29,13 +29,13 @@ Feel free to make any changes to the UpdateQuality method and add any new code a
 
 ## Solution design approach
 
-### Current domain model
+### 1. Current domain model
 
 I start with a quick domain model diagram of the current state of the production code, as follows:
 
 ![](assets/gilded-rose-baseline.excalidraw.png)
 
-### Analysis of each item
+### 2. Analysis of each item
 
 I then analyse the behaviour of each of the current categories of items. I analys the production code and add comments to it, and I sense-check against the client description above. I use this to generate behavioural profiles for each category. See below:
 
@@ -77,7 +77,7 @@ I then analyse the behaviour of each of the current categories of items. I analy
 - `quality` score doesn't change day-by-day
 
 
-### Write passing tests
+### 3. Write passing tests
 
 I now write a suite of tests to reflect the behaviour of the categories of items above. I structure the test suite as follows:
 - I describe Gilded Rose
@@ -86,7 +86,7 @@ I now write a suite of tests to reflect the behaviour of the categories of items
             - within which I describe with of the categories of items in turn
                 - testing for each of the behaviours set out in my analysis above.
 
-### Refactor
+### 4. Refactor
 
 Now that I have tests for the behaviour of the shop and its current categories of items, I have the safety net to refactor the current production code.
 
@@ -103,11 +103,11 @@ My refactoring approach is to pull out  the quality-updating behaviour of each c
 
 Note that a method for Sulfuras is not necessary as its quality update behaviour is not to change at all.
 
-### Substitute new method
+### 5. Substitute new method
 
 Once I have all the tests passing for `.newUpdateQuality` using the submethods, I am confident to delete `.updateQuality` and rename `.newUpdateQuality`, and to remove the superfluous `.newUpdateQuality` tests.
 
-### Analysis of Conjured Items
+### 6. Analysis of Conjured Items
 
 At this point I turn to the new category of items - conjured items - which I analyse as follows:
 
@@ -119,11 +119,11 @@ At this point I turn to the new category of items - conjured items - which I ana
 - When past their sell-by dates (i.e. when their `sellIn` days is zero or less), `quality` score goes down by `4` unless
 - When past their sell-by dates (i.e. when their `sellIn` days is zero or less) and `quality` is less than `4`, then `quality` goes down as much as is possible without going beyong the minimum
 
-### Test drive Conjured Items
+### 7. Test drive Conjured Items
 
 I test drive implementation of the new conjured item.
 
-### Further refactoring
+### 8. Further refactoring
 
 I have now delivered the functionality set out in the challenge.
 
