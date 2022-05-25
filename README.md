@@ -92,6 +92,18 @@ I now write a suite of tests to reflect the behaviour of the categories of items
 
 #### Category submethods
 
+### Substitute new method
+
+### Analysis of Conjured Items
+
+- Starts with a `quality` score: e.g. `20`
+- Starts with a `sellIn` number of days: e.g. `10`
+- Min `quality` of `0`
+- Every day, `sellIn` days goes down by `1` and `quality` score goes down by `2`, except
+- When past their sell-by dates (i.e. when their `sellIn` days is zero or less), `quality` score goes down by `4` unless
+- When past their sell-by dates (i.e. when their `sellIn` days is zero or less) and `quality` is less than `4`, then `quality` goes down as much as is possible without going beyong the minimum
+
+### Test drive Conjured Items
 
 
 ## Code structure
