@@ -1,8 +1,38 @@
 class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
+  }
+
+  _isInDate () {
+    return this.sellIn >= 1
+  }
+
+  _boostQuality () {
+    if (this.quality <= 49) {
+      this.quality += 1;
+    }
+  }
+
+  _reduceQuality () {
+    if (this.quality >= 1) {
+      this.quality -= 1;
+    }
+  }
+}
+
+class AgedBrie extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  updateQuality() {
+    this._boostQuality();
+    if (!this._isInDate()) {
+      this._boostQuality();
+    }
+    this.sellIn -= 1;
   }
 }
 
@@ -92,5 +122,6 @@ class Shop {
 
 module.exports = {
   Item,
+  AgedBrie,
   Shop
 }
