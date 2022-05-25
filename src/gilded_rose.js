@@ -13,16 +13,17 @@ class Shop {
   updateQuality() {
     this.items.forEach( item => {
       if (item.name === "Aged Brie") {
-        this.updateAgedBrie(item)
+        this.updateAgedBrie(item);
       } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-        this.updateBackstagePass(item)
-      } else if (item.name === "Sulfuras, Hand of Ragnaros") {
-      } else {
-        this.updateStandardItem(item)
-      }
-    })
+        this.updateBackstagePass(item);
+      } else if (item.name === "Conjured item") {
+        this.updateConjuredItems(item);
+      } else if (item.name != "Sulfuras, Hand of Ragnaros") {
+        this.updateStandardItem(item);
+      };
+    });
     return this.items;
-  }
+  };
 
 
   updateStandardItem (standardItem) {
@@ -65,6 +66,23 @@ class Shop {
     };
     backstagePass.sellIn -= 1;
   }
+
+  updateConjuredItems (conjuredItem) {
+    if (conjuredItem.sellIn >= 1) {
+      if (conjuredItem.quality >= 2) {
+        conjuredItem.quality -= 2;
+      } else {
+        conjuredItem.quality = 0;
+      }
+    } else {
+      if (conjuredItem.quality >= 4) {
+        conjuredItem.quality -= 4;
+      } else {
+        conjuredItem.quality = 0;
+      };
+    };
+    conjuredItem.sellIn -= 1;
+  };
 
 }
 
