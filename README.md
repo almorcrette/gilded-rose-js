@@ -128,6 +128,11 @@ I test drive implementation of the new conjured item.
 I have now delivered the functionality set out in the challenge.
 
 Nevertheless there are further opportunities to refactor:
+- Extract methods for common patterns `._isInDate`, `_boostQuality` and `._reduceQuality`. The later two embedding checks again max and min quality values respectively
+- Use `switch` and `case` syntax on `.updateQuality` to make clearer
+- Make item category quality update methods private.
+
+Note: I considered extracting classes for each of the categories, or at least move an indivudal item version of the `.updateQuality` method to the `Item` but haven't done so as the client requirement is: _"However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn’t believe in shared code ownership"_
 
 
 ## Code structure
