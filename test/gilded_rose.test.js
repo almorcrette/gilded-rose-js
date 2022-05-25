@@ -2,6 +2,12 @@ const {Shop, Item} = require("../src/gilded_rose");
 
 describe("Gilded Rose", () => {
   describe("Shop", () => {
+
+    describe("initializes with an items array", () => {
+      const shop = new Shop();
+      expect(shop.items).toEqual([]);
+    });
+    
     describe(".updateQuality", () => {
 
       describe("Standard item", () => {
