@@ -38,13 +38,15 @@ class Shop {
   };
 
   updateAgedBrie (agedBrie) {
-    if (agedBrie.sellIn > 0 && agedBrie.quality <= 49) {
-      agedBrie.quality += 1;
-    } else if (agedBrie.sellIn <= 0 && agedBrie.quality <= 48) {
-      agedBrie.quality += 2;
-    } else if (agedBrie.quality === 49) {
-      agedBrie.quality += 1;
-    };
+    if (agedBrie.quality >= 49) {
+      agedBrie.quality = 50;
+    } else {
+      if (agedBrie.sellIn > 0) {
+        agedBrie.quality += 1;
+      } else {
+        agedBrie.quality += 2;
+      }
+    }
     agedBrie.sellIn -= 1;
   };
 
@@ -68,22 +70,21 @@ class Shop {
   }
 
   updateConjuredItems (conjuredItem) {
-    if (conjuredItem.sellIn >= 1) {
-      if (conjuredItem.quality >= 2) {
+    if (conjuredItem.quality <= 2) {
+      conjuredItem.quality = 0
+    } else {
+      if (conjuredItem.sellIn >= 1) {
         conjuredItem.quality -= 2;
-      } else {
-        conjuredItem.quality = 0;
-      }
     } else {
       if (conjuredItem.quality >= 4) {
         conjuredItem.quality -= 4;
       } else {
         conjuredItem.quality = 0;
+        };
       };
     };
     conjuredItem.sellIn -= 1;
   };
-
 }
 
 module.exports = {
