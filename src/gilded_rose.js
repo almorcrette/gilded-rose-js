@@ -35,6 +35,12 @@ class Shop {
     };
   };
 
+  _reduceQuality (item) {
+    if (item.quality >= 1) {
+      item.quality -= 1;
+    }
+  }
+
   _updateAgedBrie (agedBrie) {
     this._boostQuality(agedBrie);
     if (!this._isInDate(agedBrie)) {
@@ -76,15 +82,10 @@ class Shop {
   };
 
   _updateStandardItem (standardItem) {
-    if (standardItem.quality <= 1) {
-      standardItem.quality = 0;
-    } else {
-      if (this._isInDate(standardItem)) {
-        standardItem.quality -= 1;
-      } else {
-        standardItem.quality -= 2;
-      };
-    };
+    this._reduceQuality (standardItem)
+    if (!this._isInDate(standardItem)) {
+      this._reduceQuality (standardItem)
+    }
     standardItem.sellIn -= 1;
   };
 
