@@ -106,6 +106,49 @@ describe("Gilded Rose", () => {
         });
       });
 
+      describe("Conjured item", () => {
+        it("reduces sellIn by 1", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 10, 20)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].sellIn).toEqual(9);
+        });
+        it("does not reduce quality if quality already at 0", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 10, 0)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+        });
+        it("reduces quality by 2 when sellIn at least 1 (if quality not at 0)", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 1, 20)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(18);
+        });
+        it("reduces quality by 1 when sellIn at least 1 (if quality is at 1)", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 1, 1)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+        });
+        it("reduces quality by 4 when sellIn is 0 or less (if quality is at least 4)", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 0, 20)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(16);
+        });
+        it("reduces quality by 1 when sellIn is 0 or less and quality is at 1", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 0, 1)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+        });
+        it("reduces quality by 2 when sellIn is 0 or less and quality is at 2", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 0, 2)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+        });
+        it("reduces quality by 3 when sellIn is 0 or less and quality is at 3", () => {
+          const gildedRose = new Shop([new Item("Conjured item", 0, 3)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+        });
+      });
+
     });
   });
 })
