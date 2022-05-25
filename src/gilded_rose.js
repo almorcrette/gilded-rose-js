@@ -10,21 +10,27 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
+
   updateQuality() {
     this.items.forEach( item => {
-      if (item.name === "Aged Brie") {
-        this._updateAgedBrie(item);
-      } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-        this._updateBackstagePass(item);
-      } else if (item.name === "Conjured item") {
-        this._updateConjuredItem(item);
-      } else if (item.name != "Sulfuras, Hand of Ragnaros") {
-        this._updateStandardItem(item);
+      switch(true) {
+        case item.name === "Aged Brie":
+          this._updateAgedBrie(item);
+          break;
+        case item.name === "Backstage passes to a TAFKAL80ETC concert":
+          this._updateBackstagePass(item);  
+          break;
+        case item.name === "Conjured item":
+          this._updateConjuredItem(item);
+          break;
+        case item.name != "Sulfuras, Hand of Ragnaros":
+          this._updateStandardItem(item);
+          break;
       };
-    });
+    })
     return this.items;
   };
-
+    
   _isInDate (item) {
     return item.sellIn >= 1
   }
@@ -75,16 +81,14 @@ class Shop {
   _updateConjuredItem (conjuredItem) {
     this._reduceQuality (conjuredItem);
     this._reduceQuality (conjuredItem);
-
     if (!this._isInDate(conjuredItem)) {
       this._reduceQuality(conjuredItem);
       this._reduceQuality (conjuredItem);
-
-    }
+    };
     conjuredItem.sellIn -= 1;
   };
 
-}
+};
 
 module.exports = {
   Item,
