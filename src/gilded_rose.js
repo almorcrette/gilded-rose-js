@@ -13,57 +13,52 @@ class Shop {
   updateQuality() {
     this.items.forEach( item => {
       if (item.name === "Aged Brie") {
-        this.updateAgedBrie(item);
+        this._updateAgedBrie(item);
       } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-        this.updateBackstagePass(item);
+        this._updateBackstagePass(item);
       } else if (item.name === "Conjured item") {
-        this.updateConjuredItems(item);
+        this._updateConjuredItems(item);
       } else if (item.name != "Sulfuras, Hand of Ragnaros") {
-        this.updateStandardItem(item);
+        this._updateStandardItem(item);
       };
     });
     return this.items;
   };
 
-  updateAgedBrie (agedBrie) {
-    if (agedBrie.quality >= 49) {
-      agedBrie.quality = 50;
-    } else {
-      if (agedBrie.sellIn > 0) {
-        agedBrie.quality += 1;
-      } else {
-        agedBrie.quality += 2;
-      }
-    }
-    agedBrie.sellIn -= 1;
-  };
-
-  updateBackstagePass (backstagePass) {
-    if (!this._isInDate(backstagePass)) {
-      backstagePass.quality = 0;
-    } else {
-      this._passQualityBooster(backstagePass)
-      if (backstagePass.sellIn <= 10) {
-        this._passQualityBooster(backstagePass)
-      };
-      if (backstagePass.sellIn <= 5) {
-        this._passQualityBooster(backstagePass)
-      };
-      backstagePass.sellIn -= 1;
-    }
-  }
-
   _isInDate (item) {
     return item.sellIn >= 1
   }
 
-  _passQualityBooster (backstagePass) {
-    if (backstagePass.quality <= 49) {
-      backstagePass.quality += 1;
+  _boostQuality (item) {
+    if (item.quality <= 49) {
+      item.quality += 1;
     };
   };
 
-  updateConjuredItems (conjuredItem) {
+  _updateAgedBrie (agedBrie) {
+    this._boostQuality(agedBrie);
+    if (!this._isInDate(agedBrie)) {
+      this._boostQuality(agedBrie);
+    }
+    agedBrie.sellIn -= 1;
+  };
+
+  _updateBackstagePass (backstagePass) {
+    if (!this._isInDate(backstagePass)) {
+      backstagePass.quality = 0;
+    } else {
+      this._boostQuality(backstagePass)
+      if (backstagePass.sellIn <= 10) {
+        this._boostQuality(backstagePass)
+      };
+      if (backstagePass.sellIn <= 5) {
+        this._boostQuality(backstagePass)
+      };
+    }
+    backstagePass.sellIn -= 1;
+  };
+
+  _updateConjuredItems (conjuredItem) {
     if (conjuredItem.quality <= 2) {
       conjuredItem.quality = 0;
     } else {
@@ -80,7 +75,7 @@ class Shop {
     conjuredItem.sellIn -= 1;
   };
 
-  updateStandardItem (standardItem) {
+  _updateStandardItem (standardItem) {
     if (standardItem.quality <= 1) {
       standardItem.quality = 0;
     } else {
