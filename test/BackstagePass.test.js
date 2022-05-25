@@ -4,7 +4,7 @@ const {BackstagePass}  = require("../src/gilded_rose");
 
 describe("Backstage Pass", () => {
   describe(".updateQuality", () => {
-    t("reduces sellIn by 1", () => {
+    it("reduces sellIn by 1", () => {
       const pass = new BackstagePass(10, 20);
       pass.updateQuality();
       expect(pass.sellIn).toEqual(9);
