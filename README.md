@@ -2,6 +2,15 @@
 
 This is my solution to the Gilded Rose kata in JavaScript with Jest. Used to practise doing a tech test during week 10 of Makers Academy, focusing on code quality.
 
+In this challenge specifically, I practice the following skills:
+- Behaviour driven development;
+- Analysing behaviour of existing production code;
+- Writing a test suite testing program behaviour
+- Using the test suite as a safety net to refactor / rewrite poorly written code
+- Single responsibility principle
+- Testing edge cases
+- DRY code (Do not repeat yourself)
+
 This kata was originally created by Terry Hughes (http://twitter.com/TerryHughes) and is on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/14/refactor-this-the-gilded-rose-kata/). The original kata as for C# and seed codebase for JS and Jest comes from [Emily Bache's library of seeds in different languages](https://github.com/emilybache/GildedRose-Refactoring-Kata).
 
 ## Client requirements
@@ -26,6 +35,13 @@ We have recently signed a supplier of conjured items. This requires an update to
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn’t believe in shared code ownership (you can make the UpdateQuality method and Items property static if you like, we’ll cover for you)."
 
 ## Test coverage
+
+----------------|----------|----------|----------|----------|-------------------|
+File            |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+----------------|----------|----------|----------|----------|-------------------|
+All files       |      100 |      100 |      100 |      100 |                   |
+ gilded_rose.js |      100 |      100 |      100 |      100 |                   |
+----------------|----------|----------|----------|----------|-------------------|
 
 ## Solution design approach
 
@@ -137,27 +153,58 @@ Note: I considered extracting classes for each of the categories, or at least mo
 
 ## Code structure
 
+The test suite is found in a single file: `./test/gilded_rose.test.js`. The `texttest_fixture.js` file is not used but forms part of the seed for the project and I may use it in a future iteration of the project.
+
+The production code is in a single file: `./src/gilded-rose.js`. It there is:
+- an `Item` class, and
+- `Shop` class.
+
+the `Shop` class initiates with an items array defaulting to empty. It has one public method `.updateQuality` and a number of private methods that are called when `.updateQuality` is called. Three of these capture common functional patterns in the code:
+- `._isInDate`
+- '`.boostQuality`
+= `._reduceQuality`
+The remaining capture the specific quality update behaviour of different categories of items:
+- `_updateAgedBrie`
+- `._updateBackstagePass`
+- `._updateStandardItem`
+- `._updateConjuredItem`
+
+
 ### Dependencies
 
+- `jest` for testing: `^8.16.0`
+- `eslint` for linting: `^24.9.0
+
 ## Usage
+
+Clone the repo locally: 
+`git clone https://github.com/almorcrette/gilded-rose-js`
+
+Install dependencies:
+`npm install`
 
 ### Getting started (installing the code)
 
 ### Usage (executing the program)
 
-### Running tests
+Use `node` as follows:
+- Start up node in the terminal: `node`
+- Require the relevant modules: `const {Shop, Item} = require("../src/gilded_rose");`
+- Set up shop with a range of items, e.g.:
 
-### Potential future extensions
-
-## Getting started
-
-Install dependencies
-
-```sh
-npm install
+```
+gildedRose = new Shop([
+    new Item("standardItem", 10, 20),
+    new Item("Aged Brie", 10, 20),
+    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
+    new Item("Sulfuras, Hand of Ragnaros", 10, 20),
+    new Item("Conjured item", 10, 0)
+    ])
 ```
 
-## Running tests
+- Update the quality of the items day-by-day with: `gildedRose.updateQuality();`
+
+### Running tests
 
 To run all tests
 
@@ -176,3 +223,7 @@ To generate test coverage report
 ```sh
 npm run test:coverage
 ```
+
+### Potential future extensions
+- There a possible refactor involving making `UpdateQuality` method and `Items` property static
+- Makers coach Alex says he can think of at least very different ways of completing this kata, so I will explore alternatives.

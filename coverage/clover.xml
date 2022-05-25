@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1653486975413" clover="3.2.0">
-  <project timestamp="1653486975413" name="All files">
+<coverage generated="1653488811270" clover="3.2.0">
+  <project timestamp="1653488811270" name="All files">
     <metrics statements="43" coveredstatements="43" conditionals="21" coveredconditionals="21" methods="11" coveredmethods="11" elements="75" coveredelements="75" complexity="0" loc="43" ncloc="43" packages="1" files="1" classes="1"/>
     <file name="gilded_rose.js" path="/Users/almorcrette/coding/projects/gilded-rose-js/src/gilded_rose.js">
       <metrics statements="43" coveredstatements="43" conditionals="21" coveredconditionals="21" methods="11" coveredmethods="11"/>

@@ -26,10 +26,10 @@ class Shop {
         case item.name != "Sulfuras, Hand of Ragnaros":
           this._updateStandardItem(item);
           break;
-      };
+      }
     })
     return this.items;
-  };
+  }
     
   _isInDate (item) {
     return item.sellIn >= 1
@@ -38,8 +38,8 @@ class Shop {
   _boostQuality (item) {
     if (item.quality <= 49) {
       item.quality += 1;
-    };
-  };
+    }
+  }
 
   _reduceQuality (item) {
     if (item.quality >= 1) {
@@ -53,7 +53,7 @@ class Shop {
       this._boostQuality(agedBrie);
     }
     agedBrie.sellIn -= 1;
-  };
+  }
 
   _updateBackstagePass (backstagePass) {
     if (!this._isInDate(backstagePass)) {
@@ -62,13 +62,13 @@ class Shop {
       this._boostQuality(backstagePass)
       if (backstagePass.sellIn <= 10) {
         this._boostQuality(backstagePass)
-      };
+      }
       if (backstagePass.sellIn <= 5) {
         this._boostQuality(backstagePass)
-      };
+      }
     }
     backstagePass.sellIn -= 1;
-  };
+  }
 
   _updateStandardItem (standardItem) {
     this._reduceQuality (standardItem);
@@ -76,7 +76,7 @@ class Shop {
       this._reduceQuality(standardItem);
     }
     standardItem.sellIn -= 1;
-  };
+  }
 
   _updateConjuredItem (conjuredItem) {
     this._reduceQuality (conjuredItem);
@@ -84,11 +84,11 @@ class Shop {
     if (!this._isInDate(conjuredItem)) {
       this._reduceQuality(conjuredItem);
       this._reduceQuality (conjuredItem);
-    };
+    }
     conjuredItem.sellIn -= 1;
-  };
+  }
 
-};
+}
 
 module.exports = {
   Item,
