@@ -25,18 +25,6 @@ class Shop {
     return this.items;
   };
 
-
-  updateStandardItem (standardItem) {
-    if (standardItem.sellIn > 0 && standardItem.quality >= 1) {
-      standardItem.quality -= 1;
-    } else if (standardItem.sellIn <= 0 && standardItem.quality >= 2) {
-      standardItem.quality -= 2;
-    } else if (standardItem.quality === 1) {
-      standardItem.quality -= 1;
-    };
-    standardItem.sellIn -= 1;
-  };
-
   updateAgedBrie (agedBrie) {
     if (agedBrie.quality >= 49) {
       agedBrie.quality = 50;
@@ -71,7 +59,7 @@ class Shop {
 
   updateConjuredItems (conjuredItem) {
     if (conjuredItem.quality <= 2) {
-      conjuredItem.quality = 0
+      conjuredItem.quality = 0;
     } else {
       if (conjuredItem.sellIn >= 1) {
         conjuredItem.quality -= 2;
@@ -85,6 +73,20 @@ class Shop {
     };
     conjuredItem.sellIn -= 1;
   };
+
+  updateStandardItem (standardItem) {
+    if (standardItem.quality <= 1) {
+      standardItem.quality = 0;
+    } else {
+      if (standardItem.sellIn >= 1) {
+        standardItem.quality -= 1;
+      } else {
+        standardItem.quality -= 2;
+      };
+    };
+    standardItem.sellIn -= 1;
+  };
+  
 }
 
 module.exports = {
