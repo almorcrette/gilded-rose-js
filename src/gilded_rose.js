@@ -39,29 +39,35 @@ class Shop {
   };
 
   updateBackstagePass (backstagePass) {
-    if (backstagePass.sellIn === 0) {
+    if (!this._isInDate(backstagePass)) {
       backstagePass.quality = 0;
-    } else if (backstagePass.sellIn > 10 && backstagePass.quality <= 49) {
-      backstagePass.quality += 1;
-    } else if (backstagePass.sellIn > 5 && backstagePass.quality <= 48) {
-      backstagePass.quality += 2;
-    } else if (backstagePass.sellIn > 5 && backstagePass.quality <= 49) {
-      backstagePass.quality += 1;
-    } else if (backstagePass.sellIn > 0 && backstagePass.quality <= 47) {
-      backstagePass.quality += 3;
-    } else if (backstagePass.sellIn > 0 && backstagePass.quality <= 48) {
-      backstagePass.quality += 2;
-    } else if (backstagePass.sellIn > 0 && backstagePass.quality <= 49) {
+    } else {
+      this._passQualityBooster(backstagePass)
+      if (backstagePass.sellIn <= 10) {
+        this._passQualityBooster(backstagePass)
+      };
+      if (backstagePass.sellIn <= 5) {
+        this._passQualityBooster(backstagePass)
+      };
+      backstagePass.sellIn -= 1;
+    }
+  }
+
+  _isInDate (item) {
+    return item.sellIn >= 1
+  }
+
+  _passQualityBooster (backstagePass) {
+    if (backstagePass.quality <= 49) {
       backstagePass.quality += 1;
     };
-    backstagePass.sellIn -= 1;
-  }
+  };
 
   updateConjuredItems (conjuredItem) {
     if (conjuredItem.quality <= 2) {
       conjuredItem.quality = 0;
     } else {
-      if (conjuredItem.sellIn >= 1) {
+      if (this._isInDate(conjuredItem)) {
         conjuredItem.quality -= 2;
     } else {
       if (conjuredItem.quality >= 4) {
@@ -78,7 +84,7 @@ class Shop {
     if (standardItem.quality <= 1) {
       standardItem.quality = 0;
     } else {
-      if (standardItem.sellIn >= 1) {
+      if (this._isInDate(standardItem)) {
         standardItem.quality -= 1;
       } else {
         standardItem.quality -= 2;
@@ -86,7 +92,7 @@ class Shop {
     };
     standardItem.sellIn -= 1;
   };
-  
+
 }
 
 module.exports = {
