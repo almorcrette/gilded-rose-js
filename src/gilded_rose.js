@@ -20,6 +20,14 @@ class Item {
       this.quality -= 1;
     }
   }
+
+  updateItemQuality () {
+    this._reduceQuality ();
+    if (!this._isInDate()) {
+      this._reduceQuality();
+    }
+    this.sellIn -= 1;
+  }
 }
 
 class AgedBrie extends Item {
