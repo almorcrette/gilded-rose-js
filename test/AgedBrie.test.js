@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const {AgedBrie}  = require("../src/gilded_rose");
+const AgedBrie  = require("../src/AgedBrie");
 
 describe("Aged Brie", () => {
   describe(".updateQuality", () => {

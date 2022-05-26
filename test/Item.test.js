@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const {Item}  = require("../src/gilded_rose");
+const Item  = require("../src/Item");
 
 describe("Item", () => {
   describe(".updateItemQuality", () => {

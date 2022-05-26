@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 
-const {ConjuredItem} = require("../src/gilded_rose");
+const ConjuredItem = require("../src/ConjuredItem");
+
 
 describe("Conjured Item", () => {
   describe(".updateQuality", () => {

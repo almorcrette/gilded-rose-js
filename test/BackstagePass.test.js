@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const {BackstagePass}  = require("../src/gilded_rose");
+const BackstagePass  = require("../src/BackstagePass");
 
 describe("Backstage Pass", () => {
   describe(".updateQuality", () => {
