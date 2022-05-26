@@ -20,7 +20,7 @@ describe("Conjured Item", () => {
       expect(conjuring.quality).toEqual(18);
     });
     it("reduces quality by 1 when sellIn at least 1 (if quality is at 1)", () => {
-      const conjuring = new ConjuredItem(1, 11);
+      const conjuring = new ConjuredItem(1, 1);
       conjuring.updateQuality();
       expect(conjuring.quality).toEqual(0);
     });
