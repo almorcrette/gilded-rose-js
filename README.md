@@ -148,27 +148,40 @@ Nevertheless there are further opportunities to refactor:
 - Use `switch` and `case` syntax on `.updateQuality` to make clearer
 - Make item category quality update methods private.
 
-Note: I considered extracting classes for each of the categories, or at least move an indivudal item version of the `.updateQuality` method to the `Item` but haven't done so as the client requirement is: _"However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn’t believe in shared code ownership"_
+### 9. Yet more refactoring - extracting classes
 
+I now extract classes for each of the special categories which inherit from the Item class: `AgedBrie`, `BackstagePass`, and `ConjuredItem`.
+
+The Item class is given `.updateQuality` method for standard items, as well as the methods for common patterns: `._isInDate`, `_boostQuality` and `._reduceQuality`.
+
+I also use polymorphism to provide variations on `.updateQuality` in the classes for the different special categories of items, allowing a simplification of a renamed `updateInventoryQuality` method in the `Shop` class which calls the respective version of `.updateQuality` for each of the items in the shop.
 
 ## Code structure
 
-The test suite is found in a single file: `./test/gilded_rose.test.js`. The `texttest_fixture.js` file is not used but forms part of the seed for the project and I may use it in a future iteration of the project.
+The test suite is found in several files, one for each of the classes:
+- `./test/AgedBrie.test.js`
+- `./test/BackstagePass.test.js`
+- `./test/ConjuredItem.test.js`
+- `./test/Item.test.js`
+- `./test/Shop.test.js`
 
-The production code is in a single file: `./src/gilded-rose.js`. It there is:
-- an `Item` class, and
-- `Shop` class.
+The `texttest_fixture.js` file is not used but forms part of the seed for the project and I may use it in a future iteration of the project.
 
-the `Shop` class initiates with an items array defaulting to empty. It has one public method `.updateQuality` and a number of private methods that are called when `.updateQuality` is called. Three of these capture common functional patterns in the code:
+The production code is found in several files, one for each of the classes:
+- `./src/AgedBrie.js`
+- `./src/BackstagePass.js`
+- `./src/ConjuredItem.js`
+- `./src/Item.js`
+- `./src/Shop.js`
+
+`AgedBrie`, `BackstagePass` and `ConjuredItems` inherit from `Item`, with `.updateQuality` method being polymorphic.
+
+The `Item` class also has three mthods which capture common functional patterns in the code:
 - `._isInDate`
 - '`.boostQuality`
 = `._reduceQuality`
-The remaining capture the specific quality update behaviour of different categories of items:
-- `_updateAgedBrie`
-- `._updateBackstagePass`
-- `._updateStandardItem`
-- `._updateConjuredItem`
 
+the `Shop` class initiates with an items array defaulting to empty. It has one public method `.updateInventoryQuality` which calls `.updateQuality` on each item. 
 
 ### Dependencies
 
