@@ -21,7 +21,7 @@ class Item {
     }
   }
 
-  updateItemQuality () {
+  updateQuality () {
     this._reduceQuality ();
     if (!this._isInDate()) {
       this._reduceQuality();
