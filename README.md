@@ -211,22 +211,22 @@ Use `node` as follows:
 - Start up node in the terminal: `node`
 - Require the relevant modules: 
 ```
-const Item = require("./src/Item);
-const AgedBrie = require("./src/AgedBrie);
+const Item = require("./src/Item");
+const AgedBrie = require("./src/AgedBrie");
 const BackstagePass = require("./src/BackstagePass");
-const ConjuredItem = require(".src/ConjuredItem");
-const Sulfuras = require(".src/Sulfuras");
+const ConjuredItem = require("./src/ConjuredItem");
+const Sulfuras = require("./src/Sulfuras");
 const Shop = require("./src/Shop");
 ```
 - Set up shop with a range of items, e.g.:
 
 ```
 gildedRose = new Shop([
-    new Item("standardItem", 10, 20),
-    new AgedBrie(10, 20),
-    new BackstagePass(10, 20),
-    new Sulfuras(10, 20),
-    new ConjuredItem(10, 0)
+    new Item("standardItem", 15, 20),
+    new AgedBrie(15, 20),
+    new BackstagePass(15, 20),
+    new Sulfuras(15, 20),
+    new ConjuredItem(15, 20)
     ])
 ```
 
