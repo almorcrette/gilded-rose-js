@@ -2,7 +2,7 @@ const Item = require("./Item");
 
 class AgedBrie extends Item {
   constructor(sellIn, quality) {
-    super(name, sellIn, quality);
+    super(sellIn, quality);
     this.sellIn = sellIn;
     this.quality = quality
     this.name = "Aged Brie"
