@@ -45,7 +45,8 @@ All files         |      100 |      100 |      100 |      100 |                 
  ConjuredItem.js  |      100 |      100 |      100 |      100 |                   |
  Item.js          |      100 |      100 |      100 |      100 |                   |
  Shop.js          |      100 |      100 |      100 |      100 |                   |
-------------------|----------|----------|----------|----------|-------------------|git 
+ Sulfuras.js      |      100 |      100 |      100 |      100 |                   |
+------------------|----------|----------|----------|----------|-------------------|
 
 ## Solution design approach
 
@@ -154,7 +155,7 @@ Nevertheless there are further opportunities to refactor:
 
 ### 9. Yet more refactoring - extracting classes
 
-I now extract classes for each of the special categories which inherit from the Item class: `AgedBrie`, `BackstagePass`, and `ConjuredItem`.
+I now extract classes for each of the special categories which inherit from the Item class: `AgedBrie`, `BackstagePass`, `ConjuredItem` and `Sulfuras`.
 
 The Item class is given `.updateQuality` method for standard items, as well as the methods for common patterns: `._isInDate`, `_boostQuality` and `._reduceQuality`.
 
@@ -166,6 +167,7 @@ The test suite is found in several files, one for each of the classes:
 - `./test/AgedBrie.test.js`
 - `./test/BackstagePass.test.js`
 - `./test/ConjuredItem.test.js`
+- `./test/Sulfuras.test.js`
 - `./test/Item.test.js`
 - `./test/Shop.test.js`
 
@@ -175,6 +177,7 @@ The production code is found in several files, one for each of the classes:
 - `./src/AgedBrie.js`
 - `./src/BackstagePass.js`
 - `./src/ConjuredItem.js`
+- `./src/Sulfuras.js`
 - `./src/Item.js`
 - `./src/Shop.js`
 
