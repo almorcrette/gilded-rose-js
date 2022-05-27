@@ -7,7 +7,7 @@ In this challenge specifically, I practice the following skills:
 - Analysing behaviour of existing production code;
 - Writing a test suite testing program behaviour
 - Using the test suite as a safety net to refactor / rewrite poorly written code
-- Single responsibility principle
+- Object oriented design, including single responsibility principle, class inheritance and polymorphism
 - Testing edge cases
 - DRY code (Do not repeat yourself)
 
@@ -45,7 +45,7 @@ All files         |      100 |      100 |      100 |      100 |                 
  ConjuredItem.js  |      100 |      100 |      100 |      100 |                   |
  Item.js          |      100 |      100 |      100 |      100 |                   |
  Shop.js          |      100 |      100 |      100 |      100 |                   |
-------------------|----------|----------|----------|----------|-------------------|
+------------------|----------|----------|----------|----------|-------------------|git 
 
 ## Solution design approach
 
@@ -206,26 +206,34 @@ Install dependencies:
 
 Use `node` as follows:
 - Start up node in the terminal: `node`
-- Require the relevant modules: `const {Shop, Item} = require("../src/gilded_rose");`
+- Require the relevant modules: 
+```
+const Item = require("./src/Item);
+const AgedBrie = require("./src/AgedBrie);
+const BackstagePass = require("./src/BackstagePass");
+const ConjuredItem = require(".src/ConjuredItem");
+const Sulfuras = require(".src/Sulfuras");
+const Shop = require("./src/Shop");
+```
 - Set up shop with a range of items, e.g.:
 
 ```
 gildedRose = new Shop([
     new Item("standardItem", 10, 20),
-    new Item("Aged Brie", 10, 20),
-    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
-    new Item("Sulfuras, Hand of Ragnaros", 10, 20),
-    new Item("Conjured item", 10, 0)
+    new AgedBrie(10, 20),
+    new BackstagePass(10, 20),
+    new Sulfuras(10, 20),
+    new ConjuredItem(10, 0)
     ])
 ```
 
-- Update the quality of the items day-by-day with: `gildedRose.updateQuality();`
+- Update the quality of the items day-by-day with: `gildedRose.updateInventoryQuality();`
 
 ### Running tests
 
 To run all tests
 
-```sh
+```
 npm test
 ```
 
